@@ -9,9 +9,6 @@
    + oracle 11g
    + Gson
    + JSTL
-   + Encoding : UTF-8
-   + DOCKER
-   + jenkins
  
 2. 사용 API
 
