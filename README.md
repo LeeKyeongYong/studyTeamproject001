@@ -33,8 +33,12 @@
    우편번호 라이브러리
    https://www.epost.go.kr/search/zipcode/cmzcd002k01.jsp
    
-   다음 우편번호
-   https://postcode.map.daum.net/guide
+   주민센터 현황
+   https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EC%A3%BC%EB%AF%BC%EC%84%BC%ED%84%B0%ED%98%84%ED%99%A9&detailKeyword=&publicDataPk=&recmSe=N&detailText=&relatedKeyword=&commaNotInData=&commaAndData=&commaOrData=&must_not=&tabId=&dataSetCoreTf=&coreDataNm=&sort=_score&relRadio=&orgFullName=&orgFilter=&org=&orgSearch=&currentPage=1&perPage=10&brm=&instt=&svcType=&kwrdArray=&extsn=&coreDataNmArray=&pblonsipScopeCode=
+   
+   카카오 지도 api
+   
+   https://apis.map.kakao.com/web/
    
 
 4. 개발 기능일정  2022. 08. 16 ~ 2022. 09. 05
