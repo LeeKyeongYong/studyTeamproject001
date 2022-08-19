@@ -1,0 +1,2 @@
+<%response.setStatus(HttpServletResponse.SC_OK);%>
+<img src="../img/error/error505.png" alt="505 error"/>
