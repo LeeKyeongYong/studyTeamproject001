@@ -1,2 +1,2 @@
 <%response.setStatus(HttpServletResponse.SC_OK);%>
-<img src="../img/error/error404.png" alt="404 error"/>
+<img src="./img/error/error404.png" alt="404 error"/>

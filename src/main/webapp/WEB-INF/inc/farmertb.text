@@ -1,0 +1,64 @@
+CREATE TABLE farmertb(
+	farmerseq varchar2(100) PRIMARY KEY  NOT null,
+	product varchar2(1000),
+	price varchar2(100),
+	endDay varchar2(10),
+	endTime varchar2(10),
+	category varchar2(10),
+	photo varchar2(100),
+	temail  varchar2(50),
+	stateaddr varchar2(100),
+	regDate varchar2(30),
+	memberCount varchar2(10),
+	boxCount varchar2(100),
+	pdetails varchar2(4000)
+);
+
+COMMIT;
+
+
+   COMMENT ON COLUMN farmertb.farmerseq IS '게시물번호';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.product IS '게시물명';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.price IS '돈';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.endDay IS '마감일자';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.endTime IS '종료시간';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.category IS '카테고리';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.photo IS '사진';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.temail IS '사용자이메일';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.stateaddr IS '거래장소';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.regDate IS '작성일자';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.memberCount IS '참가멤버';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.boxCount IS '박스갯수';
+  COMMIT;
+   COMMENT ON COLUMN farmertb.pdetails IS '상품게시내용';
+  COMMIT;
+
+
+   CREATE SEQUENCE farmertb_seq
+ INCREMENT BY 1
+ START WITH 1
+ MINVALUE 1
+ MAXVALUE 9999
+ nocycle
+ nocache
+ noorder;
+
+COMMIT;
+
+
+SELECT farmertb_seq.NEXTVAL FROM dual --시퀀스사용
+ 
+SELECT farmertb_seq.CURRVAL FROM dual --시퀀스 검색
+
+DROP SEQUENCE farmertb_seq --t시퀀스 삭제
