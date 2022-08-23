@@ -7,17 +7,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.util.Action;
+import com.util.MapAction;
 
 
 @WebServlet("/Map")
-public class MapController implements Action{
+public class MapController implements MapAction{
 	
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		
-		return null;
 	}
 }

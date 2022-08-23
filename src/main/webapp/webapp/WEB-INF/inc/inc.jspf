@@ -1,0 +1,34 @@
+<!-- header el jstl -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt" prefix="fmt" %>
+
+<!-- meta -->
+<meta charset="UTF-8">
+<meta name="description" content="Ogani Template">
+<meta name="keywords" content="Ogani, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- jQuery -->
+<script type="text/javascript" src="/Foodsharing/js/jquery-3.3.1.min.js"></script>
+<script src="/Foodsharing/js/jquery-3.3.1.min.js"></script>
+<script src="/Foodsharing/js/bootstrap.min.js"></script>
+<script src="/Foodsharing/js/jquery.nice-select.min.js"></script>
+<script src="/Foodsharing/js/jquery-ui.min.js"></script>
+<script src="/Foodsharing/js/jquery.slicknav.js"></script>
+<script src="/Foodsharing/js/mixitup.min.js"></script>
+<script src="/Foodsharing/js/owl.carousel.min.js"></script>
+<script src="/Foodsharing/js/main.js"></script>
+
+<!-- css -->
+<link rel="stylesheet" href="/Foodsharing/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/Foodsharing/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="/Foodsharing/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="/Foodsharing/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="/Foodsharing/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="/Foodsharing/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="/Foodsharing/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="/Foodsharing/css/style.css" type="text/css">
+
+    

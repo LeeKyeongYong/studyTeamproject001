@@ -13,9 +13,9 @@ import java.sql.SQLException;
  */
 public class DbConnection { //디비 연결하는 클래스
 
-	private static String url = "jdbc:oracle:thin:@192.168.21.67:1521:XE";
-	private static String uid = "hr";
-	private static String pwd = "hr";
+	private static String url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:XE";
+	private static String uid = "gjai_5_5_0822";
+	private static String pwd = "smhrd5";
 	
 	// 카넥션 얻어오기
 		public static Connection getConnection() {

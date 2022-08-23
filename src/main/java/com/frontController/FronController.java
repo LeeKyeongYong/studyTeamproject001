@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.foodsharing.Controller.FarmerListController;
-import com.foodsharing.Controller.FarmerViewController;
-import com.foodsharing.Controller.FarmerWriteController;
+import com.foodsharing.Controller.JoinCon;
+import com.foodsharing.Controller.LoginCon;
+import com.foodsharing.Controller.LogoutCon;
 import com.util.Command;
 
 @WebServlet("*.do") //자바파일이다.
@@ -35,19 +35,47 @@ request.setCharacterEncoding("utf-8");
 		Command cmm=null; //command Upcasting을 한다..
 		
 		//url경로 호출경우
-			if(command.equals("/purchaseList.do")) {
+			if(command.equals("/index.do")) {
 				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
-				cmm = new FarmerListController();
+				//cmm = new index();
+			} else if(command.equals("/purchaseList.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				//cmm = new purchaseList();
 			} else if(command.equals("/purchaseView.do")) {
 				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
-				cmm = new FarmerViewController();
+				//cmm = new FarmerViewController();
 			} else if(command.equals("/purchaseWrite.do")) {
 				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
-				cmm = new FarmerWriteController();
+				//cmm = new FarmerWriteController();
 			} else if(command.equals("/MapController.do")) {
 				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
-				cmm = new FarmerListController();
-			}
+				//cmm = new FarmerListController();
+			} else if(command.equals("/checkout.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				//cmm = new FarmerListController();
+				
+			} else if(command.equals("/LoginCon.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				cmm = new LoginCon();
+				
+			}  else if(command.equals("/LogoutCon.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				cmm = new LogoutCon();
+				
+			}else if(command.equals("/JoinCon.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				cmm = new JoinCon();
+				
+			}else if(command.equals("/shop-grid.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				//cmm = new FarmerListController();
+			} else if(command.equals("/shop-details.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				//cmm = new FarmerListController();
+			} else if(command.equals("/shoping-cart.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				//cmm = new FarmerList ();
+			} 
 		
 			String moveUrl=cmm.execute(request, response);
 			//response.sendRedirect(moveUrl);
