@@ -108,8 +108,8 @@ public class t_commentDAO {
 	  }	
 	  
 	  //게시글을삭제할때
-	  public int Deletecomment(String articleSeq,String mbId) {
-		    String sql = "delete from t_comment where article_seq=? and mb_id = ?";
+	  public int Deletecomment(String articleSeq) {
+		    String sql = "delete from t_comment where article_seq=?";
 		    Connection conn = null;
 		    PreparedStatement pstmt = null;
 		    int cnt=0;
@@ -117,7 +117,6 @@ public class t_commentDAO {
 		      conn = DbConnection.getConnection();
 		      pstmt = conn.prepareStatement(sql);
 		      pstmt.setString(1,articleSeq);
-		      pstmt.setString(2,mbId);
 		      cnt=pstmt.executeUpdate();
 		    } catch (Exception e) {
 		      System.err.println("삭제 덧글 오류입니다.\n오류메세지는: "+e.getMessage());

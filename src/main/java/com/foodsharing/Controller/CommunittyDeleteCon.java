@@ -36,7 +36,7 @@ public class CommunittyDeleteCon implements Command {
 				}
 				
 			t_commentDAO comment=t_commentDAO.getInstance();
-			int cnt2=comment.Deletecomment(articleSeq,"slekydz86@naver.com");//,tvo.getMbId());	
+			int cnt2=comment.Deletecomment(articleSeq);	
 			if(cnt2>0) {
 				System.out.println("덧글이 정상적으로 삭제가되었습니다.");
 			} else {
