@@ -50,36 +50,27 @@ public class t_commentDAO {
 	    return replies;
 	}
 	
+
+	
 	//게시판 insert
-	  public int insertcommunitty(t_communittyVO communittyVO) {
+	  public int insertcomment(t_commentVO vo) {
 		    String sql="";
 		    
-		    if(!"".equals(communittyVO.getArticleFile())) {
-		    sql = "insert into t_community(article_seq,article_title,article_content,article_file,article_date,mb_id,reply)values(t_community_seq.nextval"
-		    		+ ",?,?,?,sysdate,?,'0')";
-		    } else {
-		    	  sql = "insert into t_community(article_seq,article_title,article_content,article_date,mb_id)values(t_community_seq.nextval"
-				    		+ ",?,?,sysdate,?,'0')";	
-		    }
+		    sql = "INSERT INTO t_comment(CMT_SEQ,ARTICLE_SEQ,CMT_CONTENT,CMT_DATE,MB_ID) VALUES (T_COMMENT_SEQ.nextval,?,?,sysdate,?)";
+		    
 		    Connection conn = null;
 		    PreparedStatement pstmt = null;
 		    int cnt=0;
 		    try {
 		      conn = DbConnection.getConnection();
 		      pstmt = conn.prepareStatement(sql);
-		      pstmt.setString(1,communittyVO.getArticleTitle());
-		      pstmt.setString(2,communittyVO.getArticleContent());
-		     
-		      if(!"".equals(communittyVO.getArticleFile())) {
-		    	  pstmt.setString(3,communittyVO.getArticleFile());
-		    	  pstmt.setString(4,communittyVO.getMbId());
-		      } else {
-		    	  pstmt.setString(3,communittyVO.getMbId());
-		      }
-		      
+		      pstmt.setString(1,vo.getArticleSeq());
+		      pstmt.setString(2,vo.getCmtContent());
+		      pstmt.setString(3,vo.getMbId());
 		      cnt=pstmt.executeUpdate();
+		      updateReplyCount(vo.getArticleSeq(),"1");
 		    } catch (Exception e) {
-		      System.err.println("insert 게시판 오류입니다.\n오류메세지는: "+e.getMessage());
+		      System.err.println("insert 커멘트 오류입니다.\n오류메세지는: "+e.getMessage());
 		    } finally {
 		      DbConnection.close(conn, pstmt);
 		    }
@@ -99,6 +90,7 @@ public class t_commentDAO {
 		      pstmt.setString(2,cmtSeq);
 		      pstmt.setString(3,mbId);
 		      cnt=pstmt.executeUpdate();
+		      updateReplyCount(articleSeq,"-1");
 		    } catch (Exception e) {
 		      System.err.println("삭제 덧글 오류입니다.\n오류메세지는: "+e.getMessage());
 		    } finally {
@@ -125,5 +117,24 @@ public class t_commentDAO {
 		    }
 		    return cnt;
 	  }	
+	  
+	  
+	  	//댓글수 추가될때 리스트에서 카운팅되게 수정
+		private void updateReplyCount(String articleSeq, String cnt) {
+			String sql = "update t_community set reply = to_number(reply + ?) where no = ?";
+			    Connection conn = null;
+			    PreparedStatement pstmt = null;
+			    try {
+			      conn = DbConnection.getConnection();
+			      pstmt = conn.prepareStatement(sql);
+			      pstmt.setString(1,articleSeq);
+			      pstmt.setString(2,cnt);
+			      pstmt.executeUpdate();
+			    } catch (Exception e) {
+			      System.err.println("삭제 덧글 오류입니다.\n오류메세지는: "+e.getMessage());
+			    } finally {
+			      DbConnection.close(conn, pstmt);
+			    }
+		}
 }
 

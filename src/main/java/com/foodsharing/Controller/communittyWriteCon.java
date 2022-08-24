@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.foodsharing.DAO.t_communittyDAO;
 import com.foodshring.VO.t_communittyVO;
+import com.foodshring.VO.t_memberVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.util.Command;
@@ -24,8 +25,9 @@ public class communittyWriteCon implements Command{
 		
 		t_communittyVO vo=new t_communittyVO();
 		
-		HttpSession session = request.getSession();					
-		String userId=(String)session.getAttribute("userId");
+		HttpSession session = request.getSession();	
+		
+		t_memberVO mvo=(t_memberVO)session.getAttribute("vo");
 		
 		final String uploadPath = request.getServletContext().getRealPath("/upload");
 		final int maxPostSize = 20 * 1024 * 1024; // 20M
@@ -42,7 +44,7 @@ public class communittyWriteCon implements Command{
 				vo.setArticleFile(fileName);
 			 }
 			vo.setArticleTitle(multipartRequest.getParameter("articleTitle"));
-			//vo.setMbId(userId);
+			//vo.setMbId(mvo.getMbId());
 			vo.setMbId("slekydz86@naver.com");
 		
 		}
