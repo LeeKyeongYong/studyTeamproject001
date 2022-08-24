@@ -48,34 +48,33 @@
 	<!-- Header Section end -->
     	<section class="featured spad">
 	        <div class="container">
-	        	<div class="col-lg-3"> 전체페이지는 <c:out value="${getTotalPage}"/> 입니다.
-	        		<table border="1" width="1120px;" style="text-align:center;">
+	        	<div class="col-lg-3">
+	        		<table border="1" width="1000px;" style="text-align:center;">
 	        			<tr>
-	        			  <th>번호</th>
-	        			  <th>제목</th>
-	        			  <th>파일</th>
-	        			  <th>날짜</th>
-	        			  <th>작성자</th>
+	        				<th><c:out value="${communittyView.articleTitle}"/></th>
 	        			</tr>
-		        		<c:forEach items="${communittyList}"  var="Communitty">
-		        			<tr>
-		        				<td><c:out value="${Communitty.articleSeq}"/></td>
-		        				<td><a href="communittyView.do?articleSeq=${Communitty.articleSeq}"><c:out value="${Communitty.articleTitle}"/></a></td>
-		        				
-		        				<c:choose>
-		        					 <c:when test="${!empty Communitty.articleFile}">
-		        					 <td>o</td>
-		        					 </c:when>
-		        					 <c:otherwise>
-		        					 <td>x</td>
-		        					 </c:otherwise>
-		        				</c:choose>	
-		        				<td><c:out value="${Communitty.articleDate}"/></td>
-		        				<td style="text-align:right;"><c:out value="${Communitty.mbId}"/></td>
-		        			</tr>
-		        		</c:forEach>
-		        	</table>
-		        	<a href="communitty/communittyWrite.jsp">작성 하기</a>&nbsp;
+	        			<tr>
+	        			<td>
+	        			작성자:&nbsp;&nbsp;<c:out value="${communittyView.mbId}"/>&nbsp;&nbsp;|&nbsp;&nbsp;작성일:&nbsp;&nbsp;<c:out value="${communittyView.articleDate}"/> | 조회수: 6
+	        			&nbsp;|&nbsp;
+		        			<c:choose>
+			        				<c:when test="${!empty communittyView.articleFile}">
+			        					파일업로드 됨
+			        				</c:when>
+			        				<c:otherwise>
+			        					파일업로드 되지 않음
+			        				</c:otherwise>
+			        		</c:choose>
+		        			</td>
+	        			</tr>
+		        		<tr>
+		        		   <td><c:out value="${communittyView.articleContent}"/></td>
+		        		</tr>
+	        		</table>
+	        		<br/>
+	        		<a href="communittyList.do">이전 으로</a>&nbsp;
+	        		<a href="communittyUpdate.do">수정 하기</a>&nbsp;
+	        		<a href="communittyDelete.do">삭제 하기</a>
 	        	</div>
 	        </div>
         </section>
@@ -269,32 +268,5 @@
     <script src="${pageContext.request.contextPath}/js/mixitup.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/main.js"></script>
-
-	<script>
-	    var Target = document.getElementsByClassName("clock");
-	    function clock() {
-	    	var due_date = 30;
-	    	var due_hours = 23;
-	    	var due_minutes = 59;
-	    	var due_seconds = 59;
-	    	
-	    	var time = new Date();
-	        var seconds = time.getSeconds();
-	        var minutes = time.getMinutes();
-	        var hours = time.getHours();
-	        var date = time.getDate();
-	    	
-			for(let i = 0; i < Target.length; i++) {
-				Target[i].innerText = `\${due_date-date}일 `+
-				`\${due_hours-hours < 10 ? `0\${due_hours-hours}` : due_hours-hours}:`+
-				`\${due_minutes-minutes < 10 ? `0\${due_minutes-minutes}` : due_minutes-minutes}:`+
-				`\${due_seconds-seconds < 10 ? `0\${due_seconds-seconds}` : due_seconds-seconds}`;
-			}
-	    }
-	    setInterval(function() {clock()}, 1000); // 1초마다 실행
-    </script>
-
-
-	
 </body>
 </html>

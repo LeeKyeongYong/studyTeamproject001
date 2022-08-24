@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.foodsharing.Controller.CommunittyDeleteCon;
 import com.foodsharing.Controller.CommunittyListCon;
+import com.foodsharing.Controller.CommunittyModifyCon;
 import com.foodsharing.Controller.CommunittyViewCon;
 import com.foodsharing.Controller.JoinCon;
 import com.foodsharing.Controller.LoginCon;
