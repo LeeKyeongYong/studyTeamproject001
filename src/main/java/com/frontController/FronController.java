@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.foodsharing.Controller.CommentDeleteCon;
+import com.foodsharing.Controller.CommentInsertCon;
 import com.foodsharing.Controller.CommunittyDeleteCon;
 import com.foodsharing.Controller.CommunittyListCon;
 import com.foodsharing.Controller.CommunittyModifyCon;
@@ -99,7 +101,15 @@ request.setCharacterEncoding("utf-8");
 			}  else if(command.equals("/communittyDelete.do")) {
 				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
 				cmm = new CommunittyDeleteCon();
-			}
+			} else if(command.equals("/commentInsert.do")) {
+					System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+					cmm = new CommentInsertCon();
+			} else if(command.equals("/commentDelete.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				cmm = new CommentDeleteCon();
+		    }
+			
+			
 		
 			String moveUrl=cmm.execute(request, response);
 			//response.sendRedirect(moveUrl);

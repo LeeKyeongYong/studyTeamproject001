@@ -12,7 +12,7 @@ import com.foodsharing.DAO.t_communittyDAO;
 import com.foodshring.VO.t_memberVO;
 import com.util.Command;
 
-public class CommentDelete implements Command{
+public class CommentDeleteCon implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

@@ -92,7 +92,7 @@
 										<td><c:out value="${reply.cmtSeq}"/></td>
 										<td align="center">${reply.mbId}</td>
 										<td>${reply.cmtContent}
-											<a href="Check.jsp?articleSeq=${param.articleSeq}&cmtSeq=${reply.cmtSeq}" class="small">삭제</a>
+											<a href="commentDelete.do?articleSeq=${param.articleSeq}&cmtSeq=${reply.cmtSeq}" class="small">삭제</a>
 										</td>
 										<td align="center"><c:out value="${reply.cmtDate}"/></td>
 									</tr>
