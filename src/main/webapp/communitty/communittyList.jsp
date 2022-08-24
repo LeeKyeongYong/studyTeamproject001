@@ -48,7 +48,7 @@
 	<!-- Header Section end -->
     	<section class="featured spad">
 	        <div class="container">
-	        	<div class="col-lg-3">
+	        	<div class="col-lg-3"> 전체페이지는 <c:out value="${getTotalPage}"/> 입니다.
 	        		<table border="1" width="1000px;" style="text-align:center;">
 	        			<tr>
 	        			  <th>번호</th>

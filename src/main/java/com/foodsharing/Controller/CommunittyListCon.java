@@ -21,7 +21,10 @@ public class CommunittyListCon implements Command{
 		String url="communitty/communittyList.jsp";
 		t_communittyDAO communitty=t_communittyDAO.getInstance();
 		ArrayList<t_communittyVO> t_communittyList = communitty.listCommunitty();
+		int cntTotalPage = communitty.getTotalPage();
 		System.out.println("ArrayList불러오는것 확인입니다. "+t_communittyList);
+		System.out.println("게시물 총 수"+cntTotalPage);
+		request.setAttribute("getTotalPage",cntTotalPage);
 		request.setAttribute("communittyList",t_communittyList);
 		return url;
 	}

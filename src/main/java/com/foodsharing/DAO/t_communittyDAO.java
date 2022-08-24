@@ -3,7 +3,9 @@ package com.foodsharing.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.foodshring.VO.t_communittyVO;
 import com.util.DbConnection;
@@ -11,7 +13,7 @@ import com.util.DbConnection;
 public class t_communittyDAO {
 
 	private static t_communittyDAO instance = new t_communittyDAO();
-	 
+	public static final int comunity_per_page = 15; 
 	public t_communittyDAO() {}
 	
 	public static t_communittyDAO getInstance() {
@@ -184,5 +186,60 @@ public class t_communittyDAO {
 			    }
 			    return cnt;
 		  }	
+		
+	//게시판 총 토탈
+		  public int getTotalPage() {
+			    String sql = "select count(article_seq) from t_community";
+			    Connection conn = null;
+			    PreparedStatement pstmt = null;
+			    ResultSet rs=null;
+			    int toalPage=0;
+			    try {
+			      conn = DbConnection.getConnection();
+			      pstmt = conn.prepareStatement(sql);
+			      rs = pstmt.executeQuery();
+			      
+			      rs.next();
+			      int total = Integer.parseInt(rs.getString(1));
+			      toalPage=(int)Math.ceil(total/(double)comunity_per_page);
+			      System.out.println("totla" + total);
+			      System.out.println("totla변수" + toalPage);
+			    } catch (Exception e) {
+			      System.err.println("Count 게시판 오류입니다.\n오류메세지는: "+e.getMessage());
+			    } finally {
+			      DbConnection.close(conn, pstmt);
+			    }
+			    return toalPage;
+		  }	
+	
+		  //게시판 현재페이지 리스트
+		  public List<t_communittyVO> getBoardByPage(int page) throws SQLException {
+				List<t_communittyVO> boards = new ArrayList<t_communittyVO>();
+				
+				String sql = "select * from (select rownum rn, t1.* from (select * from t_community order by article_seq desc) t1 where rownum <= ?) where rn >= ?";
+				
+				//PreparedStatement pstmt = mConnection.prepareStatement(sql);
+				//pstmt.setInt(1, page * BOARD_PER_PAGE);
+				//pstmt.setInt(2, (page-1) * BOARD_PER_PAGE + 1);
+				
+				//ResultSet rs = pstmt.executeQuery();
+				//while(rs.next()) {
+					//Board board = new Board();
+					//board.setNo(rs.getInt("no"));
+					//board.setTitle(rs.getString("title"));
+					//board.setContent(rs.getString("content"));
+					//board.setWriter(rs.getString("writer"));
+					//board.setPassword(rs.getString("password"));
+					//board.setRef(rs.getInt("ref"));
+					//board.setReply(rs.getInt("reply"));
+					//board.setWdate(rs.getTimestamp("wdate"));
+					
+				 //	boards.add(board);
+				//}
+				//rs.close();
+				return boards;
+			}
+		  
+
 	
 }

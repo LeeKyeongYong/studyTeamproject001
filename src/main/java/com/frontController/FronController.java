@@ -8,9 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.foodsharing.Controller.CommunittyListCon;
+import com.foodsharing.Controller.CommunittyViewCon;
 import com.foodsharing.Controller.JoinCon;
 import com.foodsharing.Controller.LoginCon;
 import com.foodsharing.Controller.LogoutCon;
+import com.foodsharing.Controller.communittyUpdateCon;
+import com.foodsharing.Controller.communittyWriteCon;
 import com.util.Command;
 
 @WebServlet("*.do") //자바파일이다.
@@ -75,7 +79,25 @@ request.setCharacterEncoding("utf-8");
 			} else if(command.equals("/shoping-cart.do")) {
 				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
 				//cmm = new FarmerList ();
-			} 
+			}  else if(command.equals("/communittyList.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				cmm = new CommunittyListCon ();
+			}  else if(command.equals("/communittyView.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				cmm = new CommunittyViewCon();
+			}  else if(command.equals("/communittyWrite.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				cmm = new communittyWriteCon();
+			}  else if(command.equals("/communittyUpdate.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				cmm = new communittyUpdateCon();
+			}  else if(command.equals("/communittyModify.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				cmm = new CommunittyModifyCon();
+			}  else if(command.equals("/communittyDelete.do")) {
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				cmm = new CommunittyDeleteCon();
+			}
 		
 			String moveUrl=cmm.execute(request, response);
 			//response.sendRedirect(moveUrl);
