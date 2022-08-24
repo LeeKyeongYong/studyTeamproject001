@@ -86,7 +86,7 @@ public class t_commentDAO {
 		    return cnt;
 	  }
 	  
-	//게시판 Delete
+	//댓글직접지울때
 	  public int Deletecomment(String articleSeq,String cmtSeq,String mbId) {
 		    String sql = "delete from t_comment where article_seq=? and cmt_seq =? and mb_id = ?";
 		    Connection conn = null;
@@ -107,7 +107,7 @@ public class t_commentDAO {
 		    return cnt;
 	  }	
 	  
-	  //댓글직접지울때
+	  //게시글을삭제할때
 	  public int Deletecomment(String articleSeq,String mbId) {
 		    String sql = "delete from t_comment where article_seq=? and mb_id = ?";
 		    Connection conn = null;
