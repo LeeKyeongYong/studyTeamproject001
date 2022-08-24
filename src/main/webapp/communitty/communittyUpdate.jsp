@@ -72,9 +72,8 @@
 		        		</tr>
 	        		</table>
 	        		<br/>
-	        		<a href="communittyList.do">이전 으로</a>&nbsp;
-	        		<a href="communittyUpdate.do">수정 하기</a>&nbsp;
-	        		<a href="communittyDelete.do">삭제 하기</a>
+	        		<a href="communittyList.do?page=${param.page}">이전 으로</a>&nbsp;
+	        		<a href="communittyModify.do?page=${param.page}&articleSeq=${param.articleSeq}">수정 하기</a>&nbsp;
 	        	</div>
 	        </div>
         </section>

@@ -74,7 +74,7 @@
 	        		</table>
 	        		<br/>
 	        		<a href="communittyList.do?page=${param.page}">이전 으로</a>&nbsp;
-	        		<a href="communittyUpdate.do">수정 하기</a>&nbsp;
+	        		<a href="communittyUpdate.do?page=${param.page}&articleSeq=${param.articleSeq}">수정 하기</a>&nbsp;
 	        		<a href="communittyDelete.do?articleSeq=${param.articleSeq}">삭제 하기</a>
 	        	</div>
 	        	<br />

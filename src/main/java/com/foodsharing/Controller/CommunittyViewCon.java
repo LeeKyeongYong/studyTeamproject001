@@ -34,6 +34,7 @@ public class CommunittyViewCon implements Command{
 			ArrayList<t_commentVO> tc_vo = comment.get_commentVO(articleSeq);
 			System.out.println("tc_vo불러오는것 확인입니다. "+tc_vo);
 			
+			request.setAttribute("page",page);
 			request.setAttribute("commentList",tc_vo);
 			request.setAttribute("communittyView",t_vo);
 		}
