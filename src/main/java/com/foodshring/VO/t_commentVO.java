@@ -5,18 +5,18 @@ import java.util.Date;
 //댓글
 public class t_commentVO {
 	   
-	    private int cmtSeq;                                /* 댓글 순번 */
-	    private int articleSeq;                           /* 원글 순번 */
-	    private String cmtContent;                       /* 댓글 내용 */
-	    private String cmtDate;                          /* 댓글 작성일자 */
-	    private String mbId;                             /*댓글 작성자*/
+	    private String cmtSeq;                                /* 댓글 순번 */
+	    private String articleSeq;                           /* 원글 순번 */
+	    private String cmtContent;                           /* 댓글 내용 */
+	    private String cmtDate;                             /* 댓글 작성일자 */
+	    private String mbId;                                /*댓글 작성자*/
 		
 	    public t_commentVO() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
 
-		public t_commentVO(int cmtSeq, int articleSeq, String cmtContent, String cmtDate, String mbId) {
+		public t_commentVO(String cmtSeq, String articleSeq, String cmtContent, String cmtDate, String mbId) {
 			super();
 			this.cmtSeq = cmtSeq;
 			this.articleSeq = articleSeq;
@@ -25,19 +25,19 @@ public class t_commentVO {
 			this.mbId = mbId;
 		}
 
-		public int getCmtSeq() {
+		public String getCmtSeq() {
 			return cmtSeq;
 		}
 
-		public void setCmtSeq(int cmtSeq) {
+		public void setCmtSeq(String cmtSeq) {
 			this.cmtSeq = cmtSeq;
 		}
 
-		public int getArticleSeq() {
+		public String getArticleSeq() {
 			return articleSeq;
 		}
 
-		public void setArticleSeq(int articleSeq) {
+		public void setArticleSeq(String articleSeq) {
 			this.articleSeq = articleSeq;
 		}
 
@@ -69,6 +69,5 @@ public class t_commentVO {
 		public String toString() {
 			return "t_commentVO [cmtSeq=" + cmtSeq + ", articleSeq=" + articleSeq + ", cmtContent=" + cmtContent
 					+ ", cmtDate=" + cmtDate + ", mbId=" + mbId + "]";
-		} 
-	    
+		}
 	}

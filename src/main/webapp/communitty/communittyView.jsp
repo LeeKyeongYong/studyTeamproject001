@@ -47,6 +47,7 @@
 		<%@ include file="/header.jsp" %>
 	<!-- Header Section end -->
     	<section class="featured spad">
+    		<input type="hidden" value='<c:out value="${communittyView.reply}"/>'>
 	        <div class="container">
 	        	<div class="col-lg-3">
 	        		<table border="1" width="1000px;" style="text-align:center;">
@@ -74,8 +75,56 @@
 	        		<br/>
 	        		<a href="communittyList.do">이전 으로</a>&nbsp;
 	        		<a href="communittyUpdate.do">수정 하기</a>&nbsp;
-	        		<a href="communittyDelete.do">삭제 하기</a>
+	        		<a href="communittyDelete.do?articleSeq=${param.articleSeq}">삭제 하기</a>
 	        	</div>
+	        	<br />
+						<c:if test="${commentList!=null }">
+							<h3>덧글</h3>
+								<table>
+									<tr>
+										<th>덧글 번호</th>
+										<th width="60">작성자</th>
+										<th>덧글</th>
+										<th width="150">작성일</th>
+									</tr>
+									<c:forEach var="reply" items="${commentList}">
+									<tr>
+										<td><c:out value="${reply.cmtSeq}"/></td>
+										<td align="center">${reply.mbId}</td>
+										<td>${reply.cmtContent}
+											<a href="Check.jsp?articleSeq=${param.articleSeq}&cmtSeq=${reply.cmtSeq}" class="small">삭제</a>
+										</td>
+										<td align="center"><c:out value="${reply.cmtDate}"/></td>
+									</tr>
+									</c:forEach>
+								</table>
+								<br />
+						</c:if> 
+						
+						<h3>덧글 달기</h3>
+					<form name="fm" action="commentInsert.do" method="post">
+						<input type="hidden" name="articleSeq" value="${param.articleSeq}"/>
+						<input type="hidden" name="page" value="${param.page}" />
+						
+						<table>
+							<tr>
+								<th width="60">작성자</th>
+								<td>작성자아이디</td>
+							</tr>
+							<tr>
+								<th>덧글</th>
+								<td><input type="text" name="cmtContent" size="80" /></td>
+							</tr>
+						</table> 
+						
+						<br />
+						<div align="center">
+							<span class="button">
+								<a href="javaScript:submit()">등 록</a>
+							</span>
+						</div>
+	        		</form>
+	        
 	        </div>
         </section>
 	<!-- Hero Section Begin -->

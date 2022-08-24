@@ -7,13 +7,14 @@ public class t_communittyVO {                           //게시판
 	    private String articleFile;                     /* 첨부파일   */
 	    private String articleDate;                     /* 글 작성일  */
 	    private String mbId;                            /* 글 작성자  */
+	    private String reply;                           /* 댓글수    */
 		
 	    public t_communittyVO() {
 			super();
 		}
 
 		public t_communittyVO(String articleSeq, String articleTitle, String articleContent, String articleFile,
-				String articleDate, String mbId) {
+				String articleDate, String mbId, String reply) {
 			super();
 			this.articleSeq = articleSeq;
 			this.articleTitle = articleTitle;
@@ -21,6 +22,7 @@ public class t_communittyVO {                           //게시판
 			this.articleFile = articleFile;
 			this.articleDate = articleDate;
 			this.mbId = mbId;
+			this.reply = reply;
 		}
 
 		public String getArticleSeq() {
@@ -71,11 +73,19 @@ public class t_communittyVO {                           //게시판
 			this.mbId = mbId;
 		}
 
+		public String getReply() {
+			return reply;
+		}
+
+		public void setReply(String reply) {
+			this.reply = reply;
+		}
+
 		@Override
 		public String toString() {
 			return "t_communittyVO [articleSeq=" + articleSeq + ", articleTitle=" + articleTitle + ", articleContent="
 					+ articleContent + ", articleFile=" + articleFile + ", articleDate=" + articleDate + ", mbId="
-					+ mbId + "]";
+					+ mbId + ", reply=" + reply + "]";
 		}
 
 	} 

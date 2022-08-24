@@ -23,9 +23,14 @@ public class t_communittyDAO {
 	//게시판 리스트
 	
 	// 리스트
-		  public ArrayList<t_communittyVO> listCommunitty() {
+		  public ArrayList<t_communittyVO> listCommunitty(int page) {
 		    ArrayList<t_communittyVO> productList = new ArrayList<t_communittyVO>();
-		    String sql = "select article_seq,article_title,article_content,article_file,article_date,u_name(mb_id) AS mb_id from t_community";
+
+		    String sql = "select * " +
+					 "from (select rownum rn, t1.* " +
+					       "from (select article_seq,article_title,article_content,article_file,article_date,u_name(mb_id) AS mb_id,reply from t_community order by article_seq desc) t1 " +
+					       "where rownum <= ?) " +
+					 "where rn >= ?";
 		    
 		    Connection conn = null;
 		    PreparedStatement pstmt = null;
@@ -34,6 +39,8 @@ public class t_communittyDAO {
 		    try {
 		      conn = DbConnection.getConnection();
 		      pstmt = conn.prepareStatement(sql);
+		      pstmt.setInt(1, page * comunity_per_page);
+			  pstmt.setInt(2, (page-1) * comunity_per_page + 1);
 		      rs = pstmt.executeQuery();
 		      while (rs.next()) {
 		    	  t_communittyVO communitty = new t_communittyVO();
@@ -43,6 +50,7 @@ public class t_communittyDAO {
 		    	    communitty.setArticleFile(rs.getString("article_file"));
 		    	    communitty.setArticleDate(String.valueOf(rs.getDate("article_date")));
 					communitty.setMbId(rs.getString("mb_id"));
+					communitty.setReply(rs.getString("reply"));
 		    	  productList.add(communitty);
 		      }
 		    } catch (Exception e) {
@@ -59,11 +67,11 @@ public class t_communittyDAO {
 			    String sql="";
 			    
 			    if(!"".equals(communittyVO.getArticleFile())) {
-			    sql = "insert into t_community(article_seq,article_title,article_content,article_file,article_date,mb_id)values(t_community_seq.nextval"
-			    		+ ",?,?,?,sysdate,?)";
+			    sql = "insert into t_community(article_seq,article_title,article_content,article_file,article_date,mb_id,reply)values(t_community_seq.nextval"
+			    		+ ",?,?,?,sysdate,?,'0')";
 			    } else {
 			    	  sql = "insert into t_community(article_seq,article_title,article_content,article_date,mb_id)values(t_community_seq.nextval"
-					    		+ ",?,?,sysdate,?)";	
+					    		+ ",?,?,sysdate,?,'0')";	
 			    }
 			    Connection conn = null;
 			    PreparedStatement pstmt = null;
@@ -165,7 +173,7 @@ public class t_communittyDAO {
 		  
 		  
 	//게시판 Delete
-		  public int Deletecommunitty(t_communittyVO communittyVO) {
+		  public int Deletecommunitty(String articleSeq,String mbId) {
 			    String sql = "delete from t_community where article_seq=? and mb_id = ?";
 			    Connection conn = null;
 			    PreparedStatement pstmt = null;
@@ -173,14 +181,11 @@ public class t_communittyDAO {
 			    try {
 			      conn = DbConnection.getConnection();
 			      pstmt = conn.prepareStatement(sql);
-			      pstmt.setString(1,communittyVO.getArticleTitle());
-			      pstmt.setString(2,communittyVO.getArticleContent());
-			      pstmt.setString(3,communittyVO.getArticleFile());
-			      pstmt.setString(4,communittyVO.getArticleSeq());
-			      pstmt.setString(5,communittyVO.getMbId());
+			      pstmt.setString(1,articleSeq);
+			      pstmt.setString(2,mbId);
 			      cnt=pstmt.executeUpdate();
 			    } catch (Exception e) {
-			      System.err.println("update 게시판 오류입니다.\n오류메세지는: "+e.getMessage());
+			      System.err.println("삭제 게시판 오류입니다.\n오류메세지는: "+e.getMessage());
 			    } finally {
 			      DbConnection.close(conn, pstmt);
 			    }

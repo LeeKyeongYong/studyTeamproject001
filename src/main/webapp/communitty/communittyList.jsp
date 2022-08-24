@@ -48,7 +48,8 @@
 	<!-- Header Section end -->
     	<section class="featured spad">
 	        <div class="container">
-	        	<div class="col-lg-3"> 전체페이지는 <c:out value="${getTotalPage}"/> 입니다.
+	        	<div class="col-lg-3"> 
+	        			<div align="right">전체 ${getTotalPage} 페이지 중에 현재 ${page} 페이지</div>
 	        		<table border="1" width="1120px;" style="text-align:center;">
 	        			<tr>
 	        			  <th>번호</th>
@@ -60,7 +61,8 @@
 		        		<c:forEach items="${communittyList}"  var="Communitty">
 		        			<tr>
 		        				<td><c:out value="${Communitty.articleSeq}"/></td>
-		        				<td><a href="communittyView.do?articleSeq=${Communitty.articleSeq}"><c:out value="${Communitty.articleTitle}"/></a></td>
+		        				<td><a href="communittyView.do?articleSeq=${Communitty.articleSeq}&page=${page}"><c:out value="${Communitty.articleTitle}"/></a>
+		        				&nbsp;<a class="small">(${Communitty.reply })</a></td>
 		        				
 		        				<c:choose>
 		        					 <c:when test="${!empty Communitty.articleFile}">
@@ -75,6 +77,16 @@
 		        			</tr>
 		        		</c:forEach>
 		        	</table>
+		        	<div align="center">
+								<a href="communittyList.do?page=1">&lt;&lt;첫 페이지</a>&nbsp;&nbsp;
+								<c:if test="${page > 1 }">
+									<a href="communittyList.do?page=${page-1}">&lt;이전 페이지</a>&nbsp;&nbsp;
+								</c:if>
+								<c:if test="${page < getTotalPage }">
+									<a href="communittyList.do?page=${page+1}">다음 페이지&gt;</a>&nbsp;&nbsp;
+								</c:if>
+								<a href="communittyList.do?page=${getTotalPage}">마지막 페이지&gt;&gt;</a>
+					</div>
 		        	<a href="communitty/communittyWrite.jsp">작성 하기</a>&nbsp;
 	        	</div>
 	        </div>

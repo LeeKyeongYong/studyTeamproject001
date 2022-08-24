@@ -28,7 +28,7 @@ public class communittyWriteCon implements Command{
 		String userId=(String)session.getAttribute("userId");
 		
 		final String uploadPath = request.getServletContext().getRealPath("/upload");
-		final int maxPostSize = 20 * 1024 * 1024; // 10M
+		final int maxPostSize = 20 * 1024 * 1024; // 20M
 		
 		MultipartRequest multipartRequest = new MultipartRequest(request,uploadPath, maxPostSize, "utf-8", new DefaultFileRenamePolicy());
 		@SuppressWarnings("unchecked")

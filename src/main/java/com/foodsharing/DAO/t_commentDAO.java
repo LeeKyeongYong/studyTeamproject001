@@ -1,62 +1,130 @@
 package com.foodsharing.DAO;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.foodshring.VO.t_commentVO;
-
+import com.foodshring.VO.t_communittyVO;
+import com.util.DbConnection;
 
 public class t_commentDAO {
 
-	// DAO - 데이터베이스의 data에 접근하기 위한 객체이며
-	// 데이터베이스 접근을 하기위한 로직과 비즈니스 로직을 분리하기 위해 사용한다.
-	Connection conn = null;
-	PreparedStatement psmt = null;
-	ResultSet rs = null;
-
-	ArrayList<t_commentVO> list = new ArrayList<t_commentVO>();
-	t_commentVO vo = null;
-	int cnt = 0;
-
-	// db연결하는 공통적인 부분 만들어줘서 필요할때는 getConn(); 써서 기능만 쓰기
-	public void getConn() {
-		try {
-			// 예외처리
-			// 클래스파일 찾는거 ( Servlet 과 DB를 바로 연결할수가없어서 중간에 class파일 하나가 있어야한다)
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			// 동적로딩
-
-			String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
-			String dbid = "hr";
-			String dbpw = "hr";
-
-			// DB연결
-			// DB에 연결시키는거 DB주소 dbid dbpw 써줘야함
-			conn = DriverManager.getConnection(url, dbid, dbpw);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private static t_commentDAO instance = new t_commentDAO();
+	public static final int comunity_per_page = 15; 
+	public t_commentDAO() {}
+	
+	public static t_commentDAO getInstance() {
+		    return instance;
 	}
 
-	// 연결끊는 공통적인 부분 만들어줘서 필요할때는 close(); 써서 기능만 쓰기
-	public void close() {
-		try {
-			if (rs != null) {
-				rs.close();
-			}
-			if (psmt != null) {
-				psmt.close();
-			}
-			if (conn != null) {
-				conn.close();
-			}
-
-		} catch (Exception e2) {
-			e2.printStackTrace();
-		}
+	public  ArrayList<t_commentVO> get_commentVO(String articleSeq) {
+		ArrayList<t_commentVO> replies = new ArrayList<t_commentVO>();
+		String sql = "select CMT_SEQ,ARTICLE_SEQ,CMT_CONTENT,CMT_DATE,u_name(mb_id) AS MB_ID from t_comment where ARTICLE_SEQ = ? order by CMT_SEQ asc";
+	    
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    
+	    try {
+	      conn = DbConnection.getConnection();
+	      pstmt = conn.prepareStatement(sql);
+	      pstmt.setString(1,articleSeq);
+	      rs = pstmt.executeQuery();
+	      while (rs.next()) {
+	    	  t_commentVO commentVO = new t_commentVO();
+	    	  
+	    	  commentVO.setCmtSeq(String.valueOf(rs.getInt("CMT_SEQ")));
+	    	  commentVO.setArticleSeq(String.valueOf(rs.getInt("ARTICLE_SEQ")));
+	    	  commentVO.setCmtContent(rs.getString("CMT_CONTENT"));
+	    	  commentVO.setCmtDate(String.valueOf(rs.getDate("CMT_DATE")));
+	    	  commentVO.setMbId(rs.getString("MB_ID"));
+			  replies.add(commentVO);
+	      }
+	    } catch (Exception e) {
+	    	System.err.println("get_commentVO 댓글 오류입니다.\n오류메세지는: "+e.getMessage());
+	    } finally {
+	    	DbConnection.close(conn, pstmt, rs);
+	    }
+	    return replies;
 	}
+	
+	//게시판 insert
+	  public int insertcommunitty(t_communittyVO communittyVO) {
+		    String sql="";
+		    
+		    if(!"".equals(communittyVO.getArticleFile())) {
+		    sql = "insert into t_community(article_seq,article_title,article_content,article_file,article_date,mb_id,reply)values(t_community_seq.nextval"
+		    		+ ",?,?,?,sysdate,?,'0')";
+		    } else {
+		    	  sql = "insert into t_community(article_seq,article_title,article_content,article_date,mb_id)values(t_community_seq.nextval"
+				    		+ ",?,?,sysdate,?,'0')";	
+		    }
+		    Connection conn = null;
+		    PreparedStatement pstmt = null;
+		    int cnt=0;
+		    try {
+		      conn = DbConnection.getConnection();
+		      pstmt = conn.prepareStatement(sql);
+		      pstmt.setString(1,communittyVO.getArticleTitle());
+		      pstmt.setString(2,communittyVO.getArticleContent());
+		     
+		      if(!"".equals(communittyVO.getArticleFile())) {
+		    	  pstmt.setString(3,communittyVO.getArticleFile());
+		    	  pstmt.setString(4,communittyVO.getMbId());
+		      } else {
+		    	  pstmt.setString(3,communittyVO.getMbId());
+		      }
+		      
+		      cnt=pstmt.executeUpdate();
+		    } catch (Exception e) {
+		      System.err.println("insert 게시판 오류입니다.\n오류메세지는: "+e.getMessage());
+		    } finally {
+		      DbConnection.close(conn, pstmt);
+		    }
+		    return cnt;
+	  }
+	  
+	//게시판 Delete
+	  public int Deletecomment(String articleSeq,String cmtSeq,String mbId) {
+		    String sql = "delete from t_comment where article_seq=? and cmt_seq =? and mb_id = ?";
+		    Connection conn = null;
+		    PreparedStatement pstmt = null;
+		    int cnt=0;
+		    try {
+		      conn = DbConnection.getConnection();
+		      pstmt = conn.prepareStatement(sql);
+		      pstmt.setString(1,articleSeq);
+		      pstmt.setString(2,cmtSeq);
+		      pstmt.setString(3,mbId);
+		      cnt=pstmt.executeUpdate();
+		    } catch (Exception e) {
+		      System.err.println("삭제 덧글 오류입니다.\n오류메세지는: "+e.getMessage());
+		    } finally {
+		      DbConnection.close(conn, pstmt);
+		    }
+		    return cnt;
+	  }	
+	  
+	  //댓글직접지울때
+	  public int Deletecomment(String articleSeq,String mbId) {
+		    String sql = "delete from t_comment where article_seq=? and mb_id = ?";
+		    Connection conn = null;
+		    PreparedStatement pstmt = null;
+		    int cnt=0;
+		    try {
+		      conn = DbConnection.getConnection();
+		      pstmt = conn.prepareStatement(sql);
+		      pstmt.setString(1,articleSeq);
+		      pstmt.setString(2,mbId);
+		      cnt=pstmt.executeUpdate();
+		    } catch (Exception e) {
+		      System.err.println("삭제 덧글 오류입니다.\n오류메세지는: "+e.getMessage());
+		    } finally {
+		      DbConnection.close(conn, pstmt);
+		    }
+		    return cnt;
+	  }	
 }
+

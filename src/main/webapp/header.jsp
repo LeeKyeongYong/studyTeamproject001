@@ -42,15 +42,16 @@
 						<ul>
 							<li class="active"><a href="./index.jsp">홈</a></li>
 							<li><a href="./shop-grid.jsp">상품목록</a></li>
-							<li><a href="#">페이지</a>
+							<li><a href="#">기타</a>
 								<ul class="header__menu__dropdown">
-									<li><a href="#">1.게시판</a></li>
-									<li><a href="#">2.게시판</a></li>
+									<li><a href="#">1.결재</a></li>
+									<li><a href="communittyList.do?page=1">2.게시판</a></li>
+									<li><a href="#">3.카테고리</a></li>
 								</ul></li>
 							<!--  
 							<li><a href="./blog.jsp">농부</a></li>
 							-->
-							<li><a href="./contact.jsp">연락</a></li>
+							<li><a href="./contact.jsp">안전주소</a></li>
 						</ul>
 					</nav>
 				</div>
