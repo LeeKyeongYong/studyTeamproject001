@@ -34,7 +34,7 @@
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/logo.png" alt=""></a>
+						<a href="./index.jsp"><img src="img/logo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -44,10 +44,12 @@
 							<li><a href="./shop-grid.jsp">상품목록</a></li>
 							<li><a href="#">페이지</a>
 								<ul class="header__menu__dropdown">
-									<li><a href="./shoping-cart.jsp">장바구니</a></li>
-									<li><a href="./checkout.jsp">결제</a></li>
+									<li><a href="#">1.게시판</a></li>
+									<li><a href="#">2.게시판</a></li>
 								</ul></li>
+							<!--  
 							<li><a href="./blog.jsp">농부</a></li>
+							-->
 							<li><a href="./contact.jsp">연락</a></li>
 						</ul>
 					</nav>
@@ -55,7 +57,7 @@
 				<div class="col-lg-3">
 					<div class="header__cart">
 						<ul>
-							<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+							<li><a href="./shoping-cart.jsp"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
 						</ul>
 						<div class="header__cart__price">
 							item: <span>0원</span>

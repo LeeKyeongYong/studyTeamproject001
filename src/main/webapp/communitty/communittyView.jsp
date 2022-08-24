@@ -40,11 +40,11 @@
     </div>
     
     <!-- Humberger Begin -->
-		<%@ include file="../Humberger.jsp" %>
+		<%@ include file="/Humberger.jsp" %>
     <!-- Humberger End -->
     
 	<!-- Header Section Begin -->
-		<%@ include file="../header.jsp" %>
+		<%@ include file="/header.jsp" %>
 	<!-- Header Section end -->
     	<section class="featured spad">
 	        <div class="container">
