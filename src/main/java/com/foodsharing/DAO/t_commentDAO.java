@@ -121,14 +121,14 @@ public class t_commentDAO {
 	  
 	  	//댓글수 추가될때 리스트에서 카운팅되게 수정
 		private void updateReplyCount(String articleSeq, String cnt) {
-			String sql = "update t_community set reply = to_number(reply + ?) where no = ?";
+			String sql = "update t_community set reply = to_number(reply + ?) where article_seq = ?";
 			    Connection conn = null;
 			    PreparedStatement pstmt = null;
 			    try {
 			      conn = DbConnection.getConnection();
 			      pstmt = conn.prepareStatement(sql);
-			      pstmt.setString(1,articleSeq);
-			      pstmt.setString(2,cnt);
+			      pstmt.setString(1,cnt);
+			      pstmt.setString(2,articleSeq);
 			      pstmt.executeUpdate();
 			    } catch (Exception e) {
 			      System.err.println("삭제 덧글 오류입니다.\n오류메세지는: "+e.getMessage());
