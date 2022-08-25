@@ -107,7 +107,25 @@ request.setCharacterEncoding("utf-8");
 			} else if(command.equals("/commentDelete.do")) {
 				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
 				cmm = new CommentDeleteCon();
-		    }
+		    } else if(command.equals("/communittyDelete.do")) { //판매리스트
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				//cmm = new CommunittyDeleteCon();
+			}  else if(command.equals("/purchaseDetail.do")) { //판매 작성
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				//cmm = new CommunittyDeleteCon();
+			}  else if(command.equals("/purchaseUpdate.do")) { //판매 수정
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				//cmm = new CommunittyDeleteCon();
+			}  else if(command.equals("/purchaseView.do")) { //판매 보기
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				//cmm = new CommunittyDeleteCon();
+			}  else if(command.equals("/purchaseModify.do")) { //판매 데이터전달
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				//cmm = new CommunittyDeleteCon();
+			}  else if(command.equals("/communittyDelete.do")) { //판매 삭제
+				System.out.println("클라이언트가 요청한 메인 주소: "+requestUri);
+				//cmm = new CommunittyDeleteCon();
+			}
 			
 			
 		
