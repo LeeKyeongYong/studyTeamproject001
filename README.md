@@ -40,6 +40,8 @@
    
    스프링 스케줄러
    https://itworldyo.tistory.com/40
+   
+    참조도서: 로드북- jsp&servlet
 
 3. 개발 기능일정  2022. 08. 01 ~ 2022. 09. 05
   
