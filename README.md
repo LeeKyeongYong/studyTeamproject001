@@ -38,6 +38,8 @@
    sms문자발송
    https://www.cafe24.com/infra/web-hosting/
    
+   스프링 스케줄러
+   https://itworldyo.tistory.com/40
 
 4. 개발 기능일정  2022. 08. 01 ~ 2022. 09. 05
   
