@@ -18,22 +18,7 @@
    
 2. 사용 API
 
-   카카오로그인 API
-   https://developers.kakao.com/product/kakaoLogin
-
-   네이버로그인 API
-   https://nid.naver.com/user2/campaign/introNaverIdLogin.nhn
-
-   애플 로그인 API
-   https://developer.apple.com/account/
-
-   페이스북 록그인 API
-   https://developers.facebook.com/docs/facebook-login/web?locale=ko_KR
-
-   구글 로그인 API
-   https://console.cloud.google.com/projectcreate
-   
-   우편번호 라이브러리
+  우편번호 라이브러리
    https://www.epost.go.kr/search/zipcode/cmzcd002k01.jsp
    
    주민센터 현황
@@ -42,7 +27,16 @@
    카카오 지도 api
    https://apis.map.kakao.com/web/
    
+   결제시스템
+   https://www.ksnet.co.kr/Bbs?ci=PDS
    
+   
+   메일발송
+   https://cloud.google.com/appengine/docs/standard/java/mail/sending-mail-with-mail-api?hl=ko
+   
+   
+   sms문자발송
+   https://www.cafe24.com/infra/web-hosting/
    
 
 4. 개발 기능일정  2022. 08. 01 ~ 2022. 09. 05
@@ -54,7 +48,7 @@
 7. ERD-Diagram
 
 8. 작성한부분
-   + 리뷰,상점소개,관리자상품등록,게시판,파일업롣,DB커넥션,include (작성된 부분은 사실그대로 처리하였습니다)
+   + 리뷰,상점소개,관리자상품등록,게시판,파일업롣,DB커넥션,include,위도경도변환(프로그램) (작성된 부분은 사실그대로 처리하였습니다)
 
 9. 아쉬웠던점...
    +  같이 프로젝트 참여한 사람이 이전에 수업에 들었고 면접보기 바빴으며 플로터? 공부때문에 자진 탈퇴를 했습니다.
