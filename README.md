@@ -13,7 +13,7 @@
    + TOMCAT
    + HTML
    + CSS 
-   + SPRING
+   + SPRING (스케줄러기능만 인용)
    + BOOTSTRAP
    
 2. 사용 API
