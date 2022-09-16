@@ -15,6 +15,7 @@
    + CSS 
    + SPRING (스케줄러기능만 인용)
    + BOOTSTRAP
+   + smtp
    
 2. 사용 API
 
@@ -36,7 +37,7 @@
    
    
    sms문자발송
-   https://www.cafe24.com/infra/web-hosting/
+  https://coolsms.co.kr/
    
    스프링 스케줄러
    https://itworldyo.tistory.com/40
